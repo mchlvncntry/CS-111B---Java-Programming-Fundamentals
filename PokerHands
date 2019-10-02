@@ -1,0 +1,145 @@
+import java.util.Scanner;
+
+public class PokerHands{
+
+	//Continues to play a new match until player decides to end the program
+	public static void main(String[] args){
+		do {
+			int[] hand = getHand();
+			playOneGame();
+		} while (shouldPlayAgain());
+	}
+
+	public static void playOneGame(){
+		
+		if (containsFourOfaKind()){
+			System.out.println("Four of a kind!");
+		}
+		else if (containsFullHouse()){
+			System.out.println("Full House! \n... in the middle of the street...");
+		}
+		else if (containsStraight()){
+			System.out.println("Straight!");
+		}
+		else if (containsThreeOfaKind()){
+			System.out.println("Three of a kind!");
+		}
+		else if (containsTwoPair()){
+			System.out.println("Two pair!");
+		}
+		else if (containsPair()){
+			System.out.println("One pair!");
+		}
+		else System.out.println("Your highest card is " + determineHighestCard());
+	}
+
+
+	// Creates hand array by asking for user to enter cards one by one
+	public static int[] getHand(){
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Entery five numeric cards, no face cards. Use 2-9.");
+
+		int[] tempHand = new int[5];
+
+		for (int i = 0; i < 5; i++){
+			System.out.print("Card " + (i + 1) + ": ");
+			tempHand[i] = input.nextInt();}
+		
+		return tempHand;
+	}
+
+	public static int determineHighestCard(int[] hand){
+		int maxCard = 0;
+		for (int i = 0; i < hand.length; i++){
+			if (hand[i] > maxCard){
+				maxCard = hand[i];
+			}
+		}
+		return maxCard;
+	}
+
+	public static boolean containsPair(int[] hand){
+		int count = 0;
+		for (int i = 0; i < hand.length; i++){
+			for (int j = (i + 1); j < hand.length; j++){
+				if (hand[i] == hand[j]){
+					count++;
+				}
+			}
+		}
+		if (count == 1){
+			return true;
+		} else {return false;}
+	}
+
+	public static boolean containsTwoPair(int[] hand){
+		int count = 0;
+		for (int i = 0; i < hand.length; i++){
+			for (int j = (i + 1); j < hand.length; j++){
+				if (hand[i] == hand[j]){
+					count++;
+				}
+			}
+		}
+		if (count >= 2 && (!(containsThreeOfaKind())) && (!(containsFourOfaKind()))){
+			return true;
+		} else {return false;}
+	}
+
+	public static boolean containsThreeOfaKind(int[] hand){
+		int count = 0;
+		for (int i = 0; i < hand.length; i++){
+			for (int j = (i + 1); j < hand.length; j++){
+				for (int k = (i + 2); k < hand.length; k++){
+					if ((hand[i] == hand[j]) && (hand[j] == hand[k])){
+						count++;
+					}
+				}
+			}
+		}
+		if (count == 1){
+			return true;
+		} else {return false;}
+	}
+
+	public static void containsStraight(int[] hand){
+
+	}
+
+	public static boolean containsFullHouse(int[] hand){
+		if (containsPair() && containsThreeOfaKind()){
+			return true;
+		} else {return false;}
+	}
+
+	public static boolean containsFourOfaKind(int[] hand){
+		int count = 0;
+		for (int i = 0; i < hand.length; i++){
+			for (int j = (i + 1); j < hand.length; j++){
+				for (int k = (i + 2); k < hand.length; k++){
+					for ( int l = (i + 3); l < hand.length; l++){
+						if ((hand[i] == hand[j]) && (hand[j] == hand[k]) && (hand[k] == hand[l])){
+							count++;
+						}
+					}
+				}
+			}
+		}
+		if (count == 1){
+			return true;
+		} else {return false;}
+	}
+
+	public static boolean shouldPlayAgain(){
+			System.out.println("Wohoo! Do you want to play again? (y/n): ");
+			Scanner input = new Scanner(System.in); //Creates scanner object
+			char playAgain = input.next().charAt(0); //Stores if player wants to play again
+			
+			if (playAgain == 'y') {
+				return true;} //Creates TRUE boolean to continue the original while loop
+			else {
+				return false;} //Creates FALSE boolean to break the original while loop
+		} 
+
+}
