@@ -1,0 +1,54 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class HighScores {
+
+	public static void main(String[] args){
+		ArrayList<String> names = new ArrayList<>();
+		ArrayList<Integer> scores = new ArrayList<>();
+
+		initialize(names, scores);
+		sort(names, scores);
+		display(names, scores);
+	}
+
+	public static void initialize(ArrayList<String> names, ArrayList<Integer> scores){
+		Scanner input = new Scanner(System.in);
+
+		for (int i = 0; i < 5; i++){ 
+			System.out.print("Enter the name for player " + (i + 1) + ": ");
+			String nameInput = input.next();
+			names.add(nameInput);
+			
+			System.out.print("Enter the score for player" + (i + 1) + ": ");
+			int scoreInput = input.nextInt();
+			scores.add(scoreInput);
+		}
+	}
+
+	public static void sort(ArrayList<String> names, ArrayList<Integer> scores){
+		for (int i = 0; i < scores.size() - 1; i++){
+			int tempMax = i; 
+			for (int j = i + 1; j < scores.size(); j++){ 
+				if (scores.get(j) > scores.get(tempMax)){
+					tempMax = scores.get(j);
+				}
+			}
+			System.out.println("tempMax = " + tempMax);
+			if (scores.get(tempMax) != scores.get(i)){ 
+				Collections.swap(scores, i, tempMax);
+				Collections.swap(names, i, tempMax);
+			}
+		}
+	}
+
+	public static void display(ArrayList<String> names, ArrayList<Integer> scores){
+		System.out.println("Top Scorers:");
+
+		for (int i = 0; i < scores.size(); i++){
+			System.out.println(names.get(i) + ": " + scores.get(i));
+		}
+	}
+
+}
