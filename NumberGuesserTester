@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class NumberGuesserTester{
+	
+	public static void main(String[] args){
+
+		NewNumberGuesser playgame = new NewNumberGuesser(1,1000);
+
+		System.out.println("Think of a number between " + low + " and " + high + ".");
+
+		while (low <= high){
+			System.out.println("Is the number " + playgame.getCurrentGuess() + "? (h/l/c): ");
+			Scanner input = new Scanner(System.in);
+
+			if (input == 'h'){
+				playgame.higher();
+			}
+			else if (input == 'l'){
+				playgame.lower();
+			}
+			else if (input == 'c'){
+				System.out.println("Congrats! You guessed it.");
+				break;
+			}
+			else {
+				System.out.println(input + " is not a valid entry.");
+			}
+		}
+
+
+	}
+}
