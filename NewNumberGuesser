@@ -1,0 +1,35 @@
+public class NewNumberGuesser {
+
+	public static void main(String[] args){	
+		private int low;
+		private int high;
+		private int originalLow;
+		private int originalHigh;
+		private int guess;
+	}
+
+	public NewNumberGuesser(int lowerBound, int upperBound){
+		this.low = lowerBound;
+		this.originalLow = lowerBound;
+		this.high = upperBound;
+		this.originalHigh = upperBound;
+	}
+
+	public void higher(){
+		this.low  = guess + 1;
+	}
+
+	public void lower(){
+		this.high = guess - 1;
+	}
+
+	public int getCurrentGuess(){
+		this.guess = (high + low) / 2;
+		return this.guess;
+	}
+
+	public void reset(){
+		this.low = originalLow;
+		this.high = originalHigh;
+	}
+}
