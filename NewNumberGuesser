@@ -1,12 +1,9 @@
 public class NewNumberGuesser {
-
-	public static void main(String[] args){	
-		private int low;
-		private int high;
-		private int originalLow;
-		private int originalHigh;
-		private int guess;
-	}
+	private int low;
+	private int high;
+	private int originalLow;
+	private int originalHigh;
+    private int guess;
 
 	public NewNumberGuesser(int lowerBound, int upperBound){
 		this.low = lowerBound;
